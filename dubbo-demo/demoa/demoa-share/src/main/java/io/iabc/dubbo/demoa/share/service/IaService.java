@@ -1,0 +1,33 @@
+package io.iabc.dubbo.demoa.share.service;
+
+import java.util.List;
+import java.util.Map;
+
+import io.iabc.demo.share.common.domain.Person;
+import io.iabc.dubbo.demoa.share.dto.CookiesDTO;
+
+/**
+ * TODO
+ *
+ * @author <a href="mailto:h@iabc.io">shuchen</a>
+ * @author <a href="mailto:h@heyx.net">shuchen</a>
+ * @version V1.0
+ * @since 2018-01-25 21:15
+ */
+public interface IaService {
+
+    String cookies(CookiesDTO cookiesDTO);
+
+    String echoSimple(String msg);
+
+    String echoSimple2(String msg, Integer randomTime);
+
+    Person echoComplex(Person person);
+
+    Person echoComplex2(Person person, Integer randomTime);
+
+    List<Person> echoListPerson(List<Person> persons);
+
+    Map<String, Person> echoMapPerson(Map<String, Person> persons);
+
+}

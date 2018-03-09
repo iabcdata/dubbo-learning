@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="5 seconds">
+    <property resource="config.properties"/>
+    <property name="LOG_PATH" value="${log.file.dir}"/>
+    <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread]  %logger{36} - %msg%n"/>
+    <contextName>democ</contextName>
+    <jmxConfigurator/>
+
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="allLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
+        <file>${LOG_PATH}/democ-service-all.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/democ-service-all-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="errorLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
+        <file>${LOG_PATH}/democ-service-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/democ-service-error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="traceLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
+        <file>${LOG_PATH}/democ-service-trace.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/democ-service-trace-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="io.iabc" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="allLoggerAppender"/>
+        <appender-ref ref="errorLoggerAppender"/>
+        <appender-ref ref="traceLoggerAppender"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <!--<logger name="org.apache.http" level="info"/>-->
+    <!--<logger name="com.alibaba.druid" level="error"/>-->
+    <!--<logger name="com.alibaba.dubbo" level="error"/>-->
+    <!--<logger name="org.mybatis" level="error"/>-->
+    <!--<logger name="org.I0Itec.zkclient" level="error"/>-->
+    <!--<logger name="org.apache.zookeeper" level="error"/>-->
+    <!--<logger name="org.springframework" level="error"/>-->
+
+    <root level="INFO">
+        <appender-ref ref="errorLoggerAppender"/>
+        <appender-ref ref="stdout"/>
+    </root>
+
+
+</configuration>
