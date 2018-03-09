@@ -12,6 +12,7 @@
         <module>dubbo-learning-parent</module>
         <module>dubbo-common</module>
         <module>dubbo-demo</module>
+        <module>dubbo-rest</module>
     </modules>
 
     <properties>
