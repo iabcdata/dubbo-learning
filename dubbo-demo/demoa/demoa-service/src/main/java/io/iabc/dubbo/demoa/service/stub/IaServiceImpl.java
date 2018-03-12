@@ -5,15 +5,6 @@ import com.alibaba.dubbo.config.annotation.Service;
 import java.util.List;
 import java.util.Map;
 
-import javax.ws.rs.BeanParam;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,9 +20,6 @@ import io.iabc.dubbo.demoa.share.service.IaService;
  * @version V1.0
  * @since 2018-01-25 22:07
  */
-@Path("ia")
-@Consumes({ MediaType.APPLICATION_JSON })
-@Produces({ MediaType.APPLICATION_JSON })
 @Service(protocol = { "rest", "dubbo" }, timeout = 10000)
 public class IaServiceImpl implements IaService {
 
@@ -46,41 +34,31 @@ public class IaServiceImpl implements IaService {
 
     ////////////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    //------------------------ Implements: 
-    @GET
-    @Path("cookies")
+    //------------------------ Implements:
     @Override
-    public String cookies(@BeanParam CookiesDTO cookiesDTO) {
+    public String cookies(CookiesDTO cookiesDTO) {
         return cookiesDTO.toString();
     }
 
-    @GET
-    @Path("echoSimple")
     @Override
-    public String echoSimple(@QueryParam("msg") String msg) {
+    public String echoSimple(String msg) {
         return msg;
     }
 
-    @GET
-    @Path("echoSimple2")
     @Override
-    public String echoSimple2(@QueryParam("msg") String msg, @QueryParam("random") Integer randomTime) {
+    public String echoSimple2(String msg, Integer randomTime) {
         if (randomTime == null) {
             throw new NullPointerException("test:randomTime is null");
         }
 
         return msg;
     }
-
-    @POST
-    @Path("echoComplex")
+    
     @Override
     public Person echoComplex(Person person) {
         return person;
     }
-
-    @POST
-    @Path("echoComplex2")
+    
     @Override
     public Person echoComplex2(Person person, Integer randomTime) {
         while (randomTime-- > 0) {
@@ -88,16 +66,12 @@ public class IaServiceImpl implements IaService {
         }
         return person;
     }
-
-    @POST
-    @Path("echoListPerson")
+    
     @Override
     public List<Person> echoListPerson(List<Person> persons) {
         return persons;
     }
-
-    @POST
-    @Path("echoMapPerson")
+    
     @Override
     public Map<String, Person> echoMapPerson(Map<String, Person> persons) {
         return persons;
