@@ -27,9 +27,10 @@
     <dubbo:registry address="${application.registry.address}" register="true" group="iabc"/>
     <dubbo:consumer check="false"/>
 
-    <dubbo:protocol name="dubbo" port="20887"/>
-    <dubbo:protocol name="rest" port="${application.port}" contextpath="${application.contextpath}"
-                    server="tomcat" threads="${application.concurrence}" accepts="${application.concurrence}"/>
+    <dubbo:protocol name="dubbo" port="20887" serialization="fst"/>
+    <dubbo:protocol name="rest" port="${application.port}" serialization="kryo" contextpath="${application.contextpath}"
+                    server="tomcat" threads="${application.concurrence}" accepts="${application.concurrence}" 
+                    register="true"/>
 
     <dubbo:annotation package="io.iabc.dubbo.rest.hex.service"/>
     

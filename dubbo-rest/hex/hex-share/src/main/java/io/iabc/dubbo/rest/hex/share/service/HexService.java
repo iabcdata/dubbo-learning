@@ -16,6 +16,13 @@
 
  package io.iabc.dubbo.rest.hex.share.service;
 
+ import javax.ws.rs.Consumes;
+ import javax.ws.rs.GET;
+ import javax.ws.rs.Path;
+ import javax.ws.rs.Produces;
+ import javax.ws.rs.QueryParam;
+ import javax.ws.rs.core.MediaType;
+
  /**
   * Project: dubbo-learning
   * TODO:
@@ -24,9 +31,16 @@
   * @version V1.0
   * @since 2018-03-09 15:05
   */
+ @Path("hex")
+ @Consumes({ MediaType.APPLICATION_JSON })
+ @Produces({ MediaType.APPLICATION_JSON })
  public interface HexService {
 
+     @GET
+     @Path("status")
      String status();
 
-     String echoSimple(String msg);
+     @GET
+     @Path("echoSimple")
+     String echoSimple(@QueryParam("msg") String msg);
  }

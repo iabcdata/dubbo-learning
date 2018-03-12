@@ -19,11 +19,6 @@
  import com.alibaba.dubbo.config.annotation.Service;
 
  import javax.annotation.Resource;
- import javax.ws.rs.Consumes;
- import javax.ws.rs.GET;
- import javax.ws.rs.Path;
- import javax.ws.rs.Produces;
- import javax.ws.rs.core.MediaType;
 
  import io.iabc.dubbo.rest.hex.share.service.HexService;
  import io.iabc.dubbo.rest.hey.share.service.HeyService;
@@ -36,32 +31,23 @@
   * @version V1.0
   * @since 2018-03-09 15:09
   */
- @Path("hey")
- @Consumes({ MediaType.APPLICATION_JSON })
- @Produces({ MediaType.APPLICATION_JSON })
  @Service(protocol = { "rest", "dubbo" }, timeout = 10000)
  public class HeyServiceImpl implements HeyService {
 
      @Resource
      private HexService hexService;
 
-     @GET
-     @Path("test")
      @Override
      public String test() {
          String invokeResult = hexService.echoSimple("invoke hexService");
          return invokeResult;
      }
 
-     @GET
-     @Path("status")
      @Override
      public String status() {
          return "ok";
      }
 
-     @GET
-     @Path("hello")
      @Override
      public String hello(String msg) {
          return "hello " + msg;

@@ -16,6 +16,13 @@
 
  package io.iabc.dubbo.rest.hey.share.service;
 
+ import javax.ws.rs.Consumes;
+ import javax.ws.rs.GET;
+ import javax.ws.rs.Path;
+ import javax.ws.rs.Produces;
+ import javax.ws.rs.QueryParam;
+ import javax.ws.rs.core.MediaType;
+
  /**
   * Project: dubbo-learning
   * TODO:
@@ -24,12 +31,21 @@
   * @version V1.0
   * @since 2018-03-09 15:05
   */
+ @Path("hey")
+ @Consumes({ MediaType.APPLICATION_JSON })
+ @Produces({ MediaType.APPLICATION_JSON })
  public interface HeyService {
 
+     @GET
+     @Path("test")
      String test();
 
+     @GET
+     @Path("status")
      String status();
 
-     String hello(String msg);
+     @GET
+     @Path("hello")
+     String hello(@QueryParam("msg") String msg);
 
  }

@@ -27,12 +27,13 @@
     <dubbo:registry address="${application.registry.address}" register="true" group="iabc"/>
     <dubbo:consumer check="false"/>
 
-    <dubbo:protocol name="dubbo" port="20888"/>
-    <dubbo:protocol name="rest" port="${application.port}" contextpath="${application.contextpath}"
-                    server="tomcat" threads="${application.concurrence}" accepts="${application.concurrence}"/>
+    <dubbo:protocol name="dubbo" port="20888" serialization="fst"/>
+    <dubbo:protocol name="rest" port="${application.port}" serialization="fst" contextpath="${application.contextpath}"
+                    server="tomcat" threads="${application.concurrence}" accepts="${application.concurrence}" 
+                    register="true"/>
 
     <dubbo:annotation package="io.iabc.dubbo.rest.hey.service"/>
-    
+
     <!--<bean id="heyService" class="io.iabc.dubbo.demoa.service.stub.HeyServiceImpl"/>-->
     <!--<dubbo:service interface="io.iabc.dubbo.demoa.share.service.HeyService" ref="heyService" protocol="dubbo"/>-->
     <!--<dubbo:service interface="io.iabc.dubbo.demoa.share.service.HeyService" ref="heyService" protocol="rest"/>-->
@@ -45,6 +46,11 @@
     <!--<dubbo:reference id="icService" interface="io.iabc.dubbo.democ.share.service.IcService" -->
     <!--url="dubbo://localhost:20883"/>-->
 
-    <dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService"/>
-    
+    <!--<dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService" -->
+    <!--url="dubbo://localhost:20887"/>-->
+
+    <!--<dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService" protocol="dubbo"/>-->
+
+    <dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService" protocol="rest"/>
+
 </beans>
