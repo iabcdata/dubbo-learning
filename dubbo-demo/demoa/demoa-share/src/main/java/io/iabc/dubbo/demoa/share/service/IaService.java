@@ -3,7 +3,6 @@ package io.iabc.dubbo.demoa.share.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,7 +12,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import io.iabc.demo.share.common.domain.Person;
-import io.iabc.dubbo.demoa.share.dto.CookiesDTO;
 
 /**
  * TODO
@@ -27,10 +25,6 @@ import io.iabc.dubbo.demoa.share.dto.CookiesDTO;
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON })
 public interface IaService {
-
-    @GET
-    @Path("cookies")
-    String cookies(@BeanParam CookiesDTO cookiesDTO);
 
     @GET
     @Path("echoSimple")

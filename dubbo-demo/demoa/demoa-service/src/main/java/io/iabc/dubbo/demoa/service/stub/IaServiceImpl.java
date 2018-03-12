@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.iabc.demo.share.common.domain.Person;
-import io.iabc.dubbo.demoa.share.dto.CookiesDTO;
 import io.iabc.dubbo.demoa.share.service.IaService;
 
 /**
@@ -35,10 +34,6 @@ public class IaServiceImpl implements IaService {
     ////////////////////////////////// Methods \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     //------------------------ Implements:
-    @Override
-    public String cookies(CookiesDTO cookiesDTO) {
-        return cookiesDTO.toString();
-    }
 
     @Override
     public String echoSimple(String msg) {
