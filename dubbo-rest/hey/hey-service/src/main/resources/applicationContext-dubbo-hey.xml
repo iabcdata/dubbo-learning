@@ -29,7 +29,7 @@
 
     <dubbo:protocol name="dubbo" port="20888" serialization="fst"/>
     <dubbo:protocol name="rest" port="${application.port}" serialization="fst" contextpath="${application.contextpath}"
-                    server="tomcat" threads="${application.concurrence}" accepts="${application.concurrence}" 
+                    server="tomcat" threads="${application.concurrence}" accepts="${application.concurrence}"
                     register="true"/>
 
     <dubbo:annotation package="io.iabc.dubbo.rest.hey.service"/>
@@ -51,6 +51,10 @@
 
     <!--<dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService" protocol="dubbo"/>-->
 
-    <dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService" protocol="rest"/>
+    <!--<dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService"-->
+                     <!--protocol="dubbo://localhost:8887"/>-->
+
+    <dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService"
+                     protocol="dubbo://localhost:20887"/>
 
 </beans>
