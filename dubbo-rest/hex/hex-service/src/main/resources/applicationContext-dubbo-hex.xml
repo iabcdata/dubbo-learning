@@ -24,7 +24,7 @@
        default-autowire="byName" default-lazy-init="false">
     <dubbo:application name="${application.name}" owner="${application.owner}" organization="iabc-inc"/>
 
-    <dubbo:registry address="${application.registry.address}" register="true" group="iabc"/>
+    <dubbo:registry address="${application.registry.address}" register="false" group="iabc"/>
     <dubbo:consumer check="false"/>
 
     <dubbo:protocol name="dubbo" port="20887" serialization="fst"/>

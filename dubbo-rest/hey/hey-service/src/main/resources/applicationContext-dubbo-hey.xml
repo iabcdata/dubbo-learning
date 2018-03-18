@@ -24,7 +24,7 @@
        default-autowire="byName" default-lazy-init="false">
     <dubbo:application name="${application.name}" owner="${application.owner}" organization="iabc-inc"/>
 
-    <dubbo:registry address="${application.registry.address}" register="true" group="iabc"/>
+    <dubbo:registry address="${application.registry.address}" register="false" group="iabc"/>
     <dubbo:consumer check="false"/>
 
     <dubbo:protocol name="dubbo" port="20888" serialization="fst"/>
@@ -51,10 +51,10 @@
 
     <!--<dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService" protocol="dubbo"/>-->
 
-    <!--<dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService"-->
-                     <!--protocol="dubbo://localhost:8887"/>-->
-
     <dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService"
-                     protocol="dubbo://localhost:20887"/>
+                     protocol="dubbo" url="dubbo://localhost:8887"/>
+
+    <!--<dubbo:reference id="hexService" interface="io.iabc.dubbo.rest.hex.share.service.HexService" protocol="dubbo"-->
+                     <!--url="dubbo://localhost:20887"/>-->
 
 </beans>
